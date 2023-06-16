@@ -2,7 +2,10 @@
     "name": "arduino-cloud-tplink-switch-nodered",
     "description": "Control TP-Link smart switches using Node RED",
     "version": "0.0.1",
-    "dependencies": {},
+    "dependencies": {
+        "@arduino/node-red-contrib-arduino-iot-cloud": "1.0.7",
+        "node-red-contrib-tplink": "1.0.1"
+    },
     "node-red": {
         "settings": {
             "flowFile": "flow.json",
