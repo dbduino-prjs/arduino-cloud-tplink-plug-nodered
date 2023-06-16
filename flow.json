@@ -1,1 +1,424 @@
-[]
+[
+    {
+        "id": "08e81a1da48b89d7",
+        "type": "tab",
+        "label": "TP-Link (Switches)",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "dc42d42587cc29ad",
+        "type": "arduino-connection",
+        "applicationname": "Arduino Node Red"
+    },
+    {
+        "id": "be8fb9378a46db53",
+        "type": "inject",
+        "z": "08e81a1da48b89d7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "192.168.1.142",
+        "payload": "getInfo",
+        "payloadType": "str",
+        "x": 200,
+        "y": 680,
+        "wires": [
+            [
+                "14bc2cf774ccb7df"
+            ]
+        ]
+    },
+    {
+        "id": "2459fef20d1fecf4",
+        "type": "debug",
+        "z": "08e81a1da48b89d7",
+        "name": "DBG: TPlink: Info",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "948ee32417d6def0",
+        "type": "property out",
+        "z": "08e81a1da48b89d7",
+        "connection": "dc42d42587cc29ad",
+        "thing": "1648d691-848e-41c8-8abd-1637ac2e7f76",
+        "property": "23662e02-279c-4ede-a0bf-3b858a6f15a4",
+        "name": "plug1_status",
+        "propname": "plug1_status",
+        "defaultname": true,
+        "x": 1170,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "41fc48b7421db847",
+        "type": "inject",
+        "z": "08e81a1da48b89d7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "192.168.1.142",
+        "payload": "getMeterInfo",
+        "payloadType": "str",
+        "x": 180,
+        "y": 720,
+        "wires": [
+            [
+                "14bc2cf774ccb7df"
+            ]
+        ]
+    },
+    {
+        "id": "996c8a567a8e98a2",
+        "type": "inject",
+        "z": "08e81a1da48b89d7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "192.168.1.142",
+        "payload": "getCloudInfo",
+        "payloadType": "str",
+        "x": 180,
+        "y": 760,
+        "wires": [
+            [
+                "14bc2cf774ccb7df"
+            ]
+        ]
+    },
+    {
+        "id": "5166a6cf4754adb4",
+        "type": "inject",
+        "z": "08e81a1da48b89d7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "192.168.1.142",
+        "payload": "getQuickInfo",
+        "payloadType": "str",
+        "x": 180,
+        "y": 800,
+        "wires": [
+            [
+                "14bc2cf774ccb7df"
+            ]
+        ]
+    },
+    {
+        "id": "61dbab9ac6f5f7c4",
+        "type": "change",
+        "z": "08e81a1da48b89d7",
+        "name": "Parse Relay State",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload.relay_state",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "num",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "change",
+                "p": "payload.relay_state",
+                "pt": "msg",
+                "from": "1",
+                "fromt": "num",
+                "to": "true",
+                "tot": "bool"
+            },
+            {
+                "t": "move",
+                "p": "payload.relay_state",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 930,
+        "y": 260,
+        "wires": [
+            [
+                "948ee32417d6def0",
+                "b922e1c8fa59d7f4"
+            ]
+        ]
+    },
+    {
+        "id": "b922e1c8fa59d7f4",
+        "type": "debug",
+        "z": "08e81a1da48b89d7",
+        "name": "DBG: TPLink: Status",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "da6601420937f357",
+        "type": "rbe",
+        "z": "08e81a1da48b89d7",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "payload",
+        "topi": "topic",
+        "x": 290,
+        "y": 260,
+        "wires": [
+            [
+                "c700adb1e2fa07f1",
+                "d6eab268323a54ba"
+            ]
+        ]
+    },
+    {
+        "id": "a9592dc4f64a4df7",
+        "type": "property in poll",
+        "z": "08e81a1da48b89d7",
+        "connection": "dc42d42587cc29ad",
+        "thing": "1648d691-848e-41c8-8abd-1637ac2e7f76",
+        "property": "8c331ff8-c4fc-4705-ae87-396f5a86dde2",
+        "name": "plug1_on_off",
+        "propname": "plug1_on_off",
+        "defaultname": true,
+        "timeWindowCount": "15",
+        "timeWindowUnit": "1",
+        "x": 110,
+        "y": 260,
+        "wires": [
+            [
+                "da6601420937f357"
+            ]
+        ]
+    },
+    {
+        "id": "c700adb1e2fa07f1",
+        "type": "change",
+        "z": "08e81a1da48b89d7",
+        "name": "Parse On/Off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "192.168.1.142",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 260,
+        "wires": [
+            [
+                "01502e7c34e4fb88"
+            ]
+        ]
+    },
+    {
+        "id": "d6eab268323a54ba",
+        "type": "debug",
+        "z": "08e81a1da48b89d7",
+        "name": "DBG: TPLink: OnOff",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "1a6e9599718528be",
+        "type": "debug",
+        "z": "08e81a1da48b89d7",
+        "name": "DBG: TPlink",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "01502e7c34e4fb88",
+        "type": "kasa",
+        "z": "08e81a1da48b89d7",
+        "name": "Enchufe HS100",
+        "device": "192.168.1.142",
+        "interval": 60000,
+        "eventInterval": 15000,
+        "payload": "getInfo",
+        "payloadType": "info",
+        "debug": false,
+        "x": 700,
+        "y": 260,
+        "wires": [
+            [
+                "2459fef20d1fecf4",
+                "61dbab9ac6f5f7c4"
+            ]
+        ]
+    },
+    {
+        "id": "14bc2cf774ccb7df",
+        "type": "kasa",
+        "z": "08e81a1da48b89d7",
+        "name": "Enchufe HS100(EU)",
+        "device": "192.168.1.142",
+        "interval": 60000,
+        "eventInterval": 15000,
+        "payload": "getInfo",
+        "payloadType": "info",
+        "debug": false,
+        "x": 610,
+        "y": 740,
+        "wires": [
+            [
+                "1a6e9599718528be"
+            ]
+        ]
+    },
+    {
+        "id": "8c6d005b208c224b",
+        "type": "inject",
+        "z": "08e81a1da48b89d7",
+        "name": "On",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "192.168.1.142",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 490,
+        "y": 300,
+        "wires": [
+            [
+                "01502e7c34e4fb88"
+            ]
+        ]
+    },
+    {
+        "id": "cdc5c23455300c0e",
+        "type": "inject",
+        "z": "08e81a1da48b89d7",
+        "name": "Off",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "192.168.1.142",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 490,
+        "y": 340,
+        "wires": [
+            [
+                "01502e7c34e4fb88"
+            ]
+        ]
+    }
+]
