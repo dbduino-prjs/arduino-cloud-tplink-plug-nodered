@@ -73,6 +73,7 @@ Add the variables clicking on the ADD button. At the end of the process, your li
 > Note: All the variables have to be READ-WRITE. You can define the periodicity you wish or set them with the policy ON-CHANGE.
 
 This is a screenshot for reference.
+
 ![Arduino Cloud variables](assets/TPLink-plug-variables.png)
 
 ### Get an Arduino Cloud API key
